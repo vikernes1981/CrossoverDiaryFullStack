@@ -16,7 +16,7 @@ function AddEntryModal({ isOpen, onClose, onSave, entries }) {
   const [image, setImage] = useState('');
   const [content, setContent] = useState('');
 
-  const email = JSON.parse(localStorage.getItem('loggedInUser')).email;
+  // const email = JSON.parse(localStorage.getItem('loggedInUser')).email;
   
   const handleSave = async () => {
     if (!title || !date || !content) {
@@ -30,7 +30,7 @@ function AddEntryModal({ isOpen, onClose, onSave, entries }) {
       return;
     }
 
-    const newEntry = { email, title, date, image, content };
+    const newEntry = { title, date, image, content };
 
     try {
       const response = await createPost(newEntry);
