@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import Header from './Header';
-import EntryList from './EntryList';
-import AddEntryModal from './AddEntryModal';
+import { useState, useEffect } from "react";
+import Header from "./Header";
+import EntryList from "./EntryList";
+import AddEntryModal from "./AddEntryModal";
 
 function HomePage() {
   const [entries, setEntries] = useState([]);
@@ -11,16 +11,16 @@ function HomePage() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/entries'); // Fetching posts
-        console.log('Response:', response);
+        const response = await fetch("http://localhost:3000/api/entries"); // Fetching posts
+        console.log("Response:", response);
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
         const data = await response.json(); // Parse the JSON response
-        console.log('Fetched entries:', data); // Log the fetched data
+        console.log("Fetched entries:", data); // Log the fetched data
         setEntries(data); // Update the state with fetched entries
       } catch (error) {
-        console.error('Failed to fetch posts:', error);
+        console.error("Failed to fetch posts:", error);
       }
     };
 
@@ -44,12 +44,19 @@ function HomePage() {
   };
 
   return (
-    <div className="min-h-screen p-4 bg-gradient-to-b from-red-400 to-gray-700">
+    <div className="min-h-screen p-4 bg-gradient-to-b from-yellow-100 to-yellow-900">
       <div className="flex justify-center mb-6">
-        <img src="http://i.huffpost.com/gen/2395634/images/o-DIARY-facebook.jpg" alt="Login Illustration" className="h-100% w-100% sm:h-40 sm:w-40 lg:w-60 lg:h-60" />
+        {/* <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLOeUkK_GqGNZYUf2Jah9dsOsIdxLMC2DXfA&s"
+          alt="Login Illustration"
+          className="h-full w-full sm:h-40 sm:w-40 lg:w-60 lg:h-60"
+        /> */}
       </div>
       <div className="flex justify-center mb-6">
-        <Header onAddEntryClick={handleAddEntryClick} onLogoutClick={handleLogoutClick} />
+        <Header
+          onAddEntryClick={handleAddEntryClick}
+          onLogoutClick={handleLogoutClick}
+        />
       </div>
       <EntryList entries={entries} onEntryClick={handleEntryClick} />
       <AddEntryModal
@@ -58,6 +65,9 @@ function HomePage() {
         onSave={handleSaveEntry}
         entries={entries}
       />
+      <p class="absolute bottom-0 right-0 text-yellow-300 mb-2 mr-2">
+        © JS 2024
+      </p>
     </div>
   );
 }
