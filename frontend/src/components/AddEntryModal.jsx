@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
-import { createPost } from '../services/postService'; // Adjust the import path accordingly
+import { useState } from "react";
+import PropTypes from "prop-types";
+import { createPost } from "../services/postService"; // Adjust the import path accordingly
 
 function AddEntryModal({ isOpen, onClose, onSave, entries }) {
   // Add prop validation
@@ -11,22 +11,24 @@ function AddEntryModal({ isOpen, onClose, onSave, entries }) {
     entries: PropTypes.array.isRequired,
   };
 
-  const [title, setTitle] = useState('');
-  const [date, setDate] = useState('');
-  const [image, setImage] = useState('');
-  const [content, setContent] = useState('');
+  const [title, setTitle] = useState("");
+  const [date, setDate] = useState("");
+  const [image, setImage] = useState("");
+  const [content, setContent] = useState("");
 
   // const email = JSON.parse(localStorage.getItem('loggedInUser')).email;
-  
+
   const handleSave = async () => {
     if (!title || !date || !content) {
-      alert('Please fill in all fields');
+      alert("Please fill in all fields");
       return;
     }
 
     const existingEntry = entries.find((entry) => entry.date === date);
     if (existingEntry) {
-      alert('An entry for this date already exists. Please choose another date.');
+      alert(
+        "An entry for this date already exists. Please choose another date."
+      );
       return;
     }
 
@@ -37,8 +39,8 @@ function AddEntryModal({ isOpen, onClose, onSave, entries }) {
       onSave(newEntry);
       onClose();
     } catch (error) {
-      console.error('Error saving the entry:', error);
-      alert('An error occurred while saving the entry. Please try again.');
+      console.error("Error saving the entry:", error);
+      alert("An error occurred while saving the entry. Please try again.");
     }
   };
 
@@ -46,8 +48,10 @@ function AddEntryModal({ isOpen, onClose, onSave, entries }) {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg">
-        <h2 className="text-2xl font-bold mb-4 text-gray-800">Add New Entry</h2>
+      <div className="bg-yellow-200 p-8 rounded-lg shadow-lg w-full max-w-lg">
+        <h2 className="text-2xl font-bold mb-4 text-yellow-800">
+          Add New Entry
+        </h2>
         <input
           type="text"
           placeholder="Title"
@@ -76,13 +80,13 @@ function AddEntryModal({ isOpen, onClose, onSave, entries }) {
         ></textarea>
         <div className="flex justify-end">
           <button
-            className="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg mr-2 hover:bg-gray-400 transition-colors"
+            className="bg-yellow-400 text-yellow-800 px-4 py-2 rounded-lg mr-2 hover:bg-yellow-300 transition-colors"
             onClick={onClose}
           >
             Cancel
           </button>
           <button
-            className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors"
+            className="bg-yellow-600 text-yellow-800 px-4 py-2 rounded-lg hover:bg-yellow-500 transition-colors"
             onClick={handleSave}
           >
             Save

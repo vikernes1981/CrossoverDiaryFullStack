@@ -40,10 +40,13 @@ function HomePage() {
   };
 
   return (
-
-    <div className="min-h-screen p-4 bg-gradient-to-b from-red-400 to-gray-700">
+    <div className="min-h-screen p-4 bg-gradient-to-b from-yellow-100 to-yellow-900">
       <div className="relative w-full h-64 mb-6">
-        <img src="https://png.pngtree.com/background/20230612/original/pngtree-wooden-wall-with-various-plants-growing-in-it-picture-image_3176183.jpg" alt="Login Illustration" className="absolute inset-0 object-cover w-full h-full" />
+        <img
+          src="https://png.pngtree.com/background/20230612/original/pngtree-wooden-wall-with-various-plants-growing-in-it-picture-image_3176183.jpg"
+          alt="Login Illustration"
+          className="absolute inset-0 object-cover w-full h-full"
+        />
       </div>
       <div className="flex justify-center mb-6">
         <Header onAddEntryClick={handleAddEntryClick} />
