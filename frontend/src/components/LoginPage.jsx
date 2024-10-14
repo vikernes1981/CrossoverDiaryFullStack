@@ -47,7 +47,7 @@ function LoginPage({ onLogin }) {
       <div className="bg-white p-8 rounded-lg shadow-lg w-96">
         <div className="flex justify-center mb-6">
           <img
-            src="http://i.huffpost.com/gen/2395634/images/o-DIARY-facebook.jpg"
+            src="https://static.vecteezy.com/system/resources/thumbnails/022/821/063/original/high-angle-view-of-open-diary-on-table-free-video.jpg"
             alt="Login Illustration"
             className="h-40 w-40"
           />
