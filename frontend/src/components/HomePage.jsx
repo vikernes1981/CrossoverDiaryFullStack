@@ -35,28 +35,18 @@ function HomePage() {
     setIsModalOpen(false);
   };
 
-  const handleLogoutClick = () => {
-    // Your logout logic here
-  };
-
   const handleEntryClick = (entryId) => {
     // Your entry click logic here
   };
 
   return (
-    <div className="min-h-screen p-4 bg-gradient-to-b from-yellow-100 to-yellow-900">
-      <div className="flex justify-center mb-6">
-        {/* <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLOeUkK_GqGNZYUf2Jah9dsOsIdxLMC2DXfA&s"
-          alt="Login Illustration"
-          className="h-full w-full sm:h-40 sm:w-40 lg:w-60 lg:h-60"
-        /> */}
+
+    <div className="min-h-screen p-4 bg-gradient-to-b from-red-400 to-gray-700">
+      <div className="relative w-full h-64 mb-6">
+        <img src="https://png.pngtree.com/background/20230612/original/pngtree-wooden-wall-with-various-plants-growing-in-it-picture-image_3176183.jpg" alt="Login Illustration" className="absolute inset-0 object-cover w-full h-full" />
       </div>
       <div className="flex justify-center mb-6">
-        <Header
-          onAddEntryClick={handleAddEntryClick}
-          onLogoutClick={handleLogoutClick}
-        />
+        <Header onAddEntryClick={handleAddEntryClick} />
       </div>
       <EntryList entries={entries} onEntryClick={handleEntryClick} />
       <AddEntryModal

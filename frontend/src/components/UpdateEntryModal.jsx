@@ -11,27 +11,29 @@ function UpdateEntryModal({ isOpen, onClose, onUpdate, entry }) {
     onUpdate: PropTypes.func.isRequired,
     entry: PropTypes.object.isRequired,
   };
+    const [title, setTitle] = useState('');
+    const [content, setContent] = useState('');
+    const [image, setImage] = useState('');
+    const navigate = useNavigate();
 
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const navigate = useNavigate();
+    useEffect(() => {
+        if (entry) {
+            setTitle(entry.title);
+            setContent(entry.content);
+            setImage(entry.image || '');
+        }
+    }, [entry]);
 
-  useEffect(() => {
-    if (entry) {
-      setTitle(entry.title);
-      setContent(entry.content);
-    }
-  }, [entry]);
+    const handleUpdate = async () => {
+        if (!title && !content && !image) {
+            alert('Please fill in at least one field');
+            return;
+        }
 
-  const handleUpdate = async () => {
-    if (!title && !content) {
-      alert("Please fill in at least one field");
-      return;
-    }
-
-    const updatedFields = {};
-    if (title) updatedFields.title = title;
-    if (content) updatedFields.content = content;
+        const updatedFields = {};
+        if (title) updatedFields.title = title;
+        if (content) updatedFields.content = content;
+        if (image) updatedFields.image = image;
 
     try {
       const response = await updatePost(entry.id, updatedFields);
@@ -48,7 +50,7 @@ function UpdateEntryModal({ isOpen, onClose, onUpdate, entry }) {
   };
 
   if (!isOpen) return null;
-
+  
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
       <div className="bg-yellow-200 p-8 rounded-lg shadow-lg w-full max-w-lg">
@@ -68,6 +70,13 @@ function UpdateEntryModal({ isOpen, onClose, onUpdate, entry }) {
           value={content}
           onChange={(e) => setContent(e.target.value)}
         ></textarea>
+            <input
+                    type="text"
+                    placeholder="Image URL"
+                    className="w-full p-3 mb-6 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    value={image}
+                    onChange={(e) => setImage(e.target.value)}
+                />
         <div className="flex justify-end">
           <button
             className="bg-yellow-400 text-yellow-100 px-4 py-2 rounded-lg mr-2 hover:bg-yellow-300 transition-colors"
@@ -87,6 +96,7 @@ function UpdateEntryModal({ isOpen, onClose, onUpdate, entry }) {
           >
             Back to Homepage
           </button>
+
         </div>
       </div>
     </div>

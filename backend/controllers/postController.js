@@ -48,11 +48,11 @@ export const createPost = async (req, res) => {
 // Update a post by ID
 export const updatePost = async (req, res) => {
   const { id } = req.params;
-  const { title, content } = req.body;
+  const { title, content, image } = req.body;
   try {
     const result = await pool.query(
-      'UPDATE entries SET title = $1, content = $2 WHERE id = $3 RETURNING *',
-      [title, content, id]
+      'UPDATE entries SET title = $1, content = $2, image = $3 WHERE id = $4 RETURNING *',
+      [title, content, image, id]
     );
     res.json(result.rows[0]);
   } catch (err) {
