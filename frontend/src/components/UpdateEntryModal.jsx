@@ -14,17 +14,19 @@ function UpdateEntryModal({ isOpen, onClose, onUpdate, entry }) {
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+    const [image, setImage] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
         if (entry) {
             setTitle(entry.title);
             setContent(entry.content);
+            setImage(entry.image || '');
         }
     }, [entry]);
 
     const handleUpdate = async () => {
-        if (!title && !content) {
+        if (!title && !content && !image) {
             alert('Please fill in at least one field');
             return;
         }
@@ -32,6 +34,7 @@ function UpdateEntryModal({ isOpen, onClose, onUpdate, entry }) {
         const updatedFields = {};
         if (title) updatedFields.title = title;
         if (content) updatedFields.content = content;
+        if (image) updatedFields.image = image;
 
         try {
             const response = await updatePost(entry.id, updatedFields);
@@ -62,10 +65,17 @@ function UpdateEntryModal({ isOpen, onClose, onUpdate, entry }) {
                 />
                 <textarea
                     placeholder="Content"
-                    className="w-full p-3 mb-6 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
                 ></textarea>
+                <input
+                    type="text"
+                    placeholder="Image URL"
+                    className="w-full p-3 mb-6 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    value={image}
+                    onChange={(e) => setImage(e.target.value)}
+                />
                 <div className="flex justify-end">
                     <button
                         className="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg mr-2 hover:bg-gray-400 transition-colors"
